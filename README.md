@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Landing</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #1a1a1a;
+            color: #ff4d4d;
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden;
+            flex-direction: column;
+        }
+
+        .heart-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+
+        .heart-container::before,
+        .heart-container::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            width: 150px;
+            height: 240px;
+            border-radius: 150px 150px 0 0;
+            background: #ff4d4d;
+        }
+
+        .heart-container::before {
+            left: 150px;
+            transform: rotate(-45deg);
+            transform-origin: 0 100%;
+        }
+
+        .heart-container::after {
+            left: 0;
+            transform: rotate(45deg);
+            transform-origin: 100% 100%;
+        }
+
+        .text-heart {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInHeart 2s ease-in-out forwards;
+            animation-delay: 1s;
+        }
+
+        @keyframes fadeInHeart {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .main-message {
+            font-size: 2em;
+            color: white;
+            opacity: 0;
+            animation: fadeInMain 1s ease-in-out forwards;
+            animation-delay: 2.5s;
+        }
+
+        @keyframes fadeInMain {
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-container">
+        <div class="text-heart">
+            </div>
+    </div>
+    <div class="main-message">I love you.</div>
+
+    <script>
+        const heart = document.querySelector('.text-heart');
+        const phrase = "I love you ";
+        for (let i = 0; i < 300; i++) {
+            const span = document.createElement('span');
+            span.textContent = phrase;
+            span.style.animationDelay = `${Math.random() * 2}s`;
+            heart.appendChild(span);
+        }
+    </script>
+</body>
+</html>
